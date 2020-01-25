@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Final Project</title>
+  <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_style.css">
+</head>
+<body>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Dashboard</span>
+      </button>
+  <div id="nav">
+    <h2>CO<sub>2</sub> Dashboard </h2>
+    <p>
+      Please review CO<sub>2</sub> emissions by year. 
+      Current year: <span id="year-val"></span>
+      <input id="year" type="range" step="1">
+    </p>
+    <p>
+      Choose between total emissions or emissions per capita.
+      <input type="radio" name="data-type" value="emissions" checked>
+      <label>Emissions</label>
+      <input type="radio" name="data-type" value="emissionsPerCapita">
+      <label>Emissions Per Capita</label>
+    </p>
+    <p>Click on a country to see its trends by year.</p>
+  </div>
+  <section class="container">
+    <div class="chart-container">
+    <svg 
+      version="1.1"
+      baseProfile="full"
+      xmlns="http://www.w3.org/2000/svg" 
+      id="map">
+    </svg>
+  <div>
+    <svg id="mlegend" height=90 width=250></svg>
+  </div>
+  </div>
+  <div class="chart-container right">
+    <div>
+    	
+    </div>
+    <svg 
+      version="1.1"
+      baseProfile="full"
+      xmlns="http://www.w3.org/2000/svg" 
+      id="bar">
+    </svg>
+  </div>
+
+  </section>
+  <div class="tooltip"></div>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="pie.js"></script>
+  <script src="bar.js"></script>
+  <script src="map.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
+
+
+<script>
+
+// select the svg area
+var svg = d3.select("#mlegend")
+
+// Handmade legend
+svg.append("circle").attr("cx",30).attr("cy", 10).attr("r", 5).style("fill", "#E9E9B5")
+svg.append("circle").attr("cx",30).attr("cy", 25).attr("r", 5).style("fill", "#E3D238")
+svg.append("circle").attr("cx",30).attr("cy", 40).attr("r", 5).style("fill", "#E67E22")
+svg.append("circle").attr("cx",30).attr("cy", 55).attr("r", 5).style("fill", "#E74C3C")
+svg.append("circle").attr("cx",30).attr("cy", 70).attr("r", 5).style("fill", "#D20000")
+svg.append("circle").attr("cx",30).attr("cy", 85).attr("r", 5).style("fill", "#A70000")
+svg.append("text").attr("x", 40).attr("y", 10).text("from 0 to 150,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 40).attr("y", 25).text("from 150,000 to 350,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 40).attr("y", 40).text("from 350,000 to 1,000,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 40).attr("y", 55).text("from 1,000,000 to 3,000,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 40).attr("y", 70).text("from 3,000,000 to 5,000,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 40).attr("y", 85).text("> 5,000,000 k metric tons").style("font-size", "12px").attr("alignment-baseline","middle")
+</script>
+
